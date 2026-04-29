@@ -1,12 +1,17 @@
 # AI Instagram Bio Generator
 
-## Overview
-This project is a web-based tool designed to generate creative and engaging Instagram bios using AI, tailored to user-defined keywords and desired tone. It's built with a simple HTML/TailwindCSS frontend, ready for Next.js and AI (GPT) integration.
+Instantly craft engaging and optimized Instagram bios using AI! Input your keywords and persona, and let the AI create a bio that truly represents you or your brand.
 
-## Features
-- Input for keywords and desired tone.
-- Placeholder for AI-generated bio display.
-- Placeholder for a one-time purchase button.
+## Features:
+- Keyword-driven bio generation
+- Persona selection (Creative, Professional, Influencer, etc.)
+- Custom tone input
+- Clean and responsive design
 
-## Setup
-Open `index.html` in your browser. Future iterations will involve Vercel deployment, OpenAI API integration, and Stripe checkout.
+## How to Use:
+1. Enter relevant keywords about yourself or your brand.
+2. Select a persona that best fits you.
+3. (Optional) Provide a desired tone for the bio.
+4. Click 'Generate Bio' and get instant results!
+
+Perfect for small business owners, influencers, and anyone looking to enhance their Instagram presence.
