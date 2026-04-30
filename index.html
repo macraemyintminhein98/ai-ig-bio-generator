@@ -3,74 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Instagram Bio Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <title>BioGenius AI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
-        body { font-family: sans-serif; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-        input[type="text"], textarea, select { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 0.375rem; }
-        button { padding: 0.75rem 1.5rem; background-color: #3B82F6; color: white; border-radius: 0.375rem; cursor: pointer; }
-        button:hover { background-color: #2563EB; }
-        #output { background-color: #f0f4f8; padding: 1rem; border-radius: 0.375rem; min-height: 100px; white-space: pre-wrap; word-wrap: break-word; }
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: var(--pico-background-color); }
+        main { width: 100%; max-width: 600px; padding: 2rem; border-radius: var(--pico-border-radius); box-shadow: var(--pico-box-shadow); }
+        hgroup { text-align: center; margin-bottom: 2rem; }
+        .bio-results { margin-top: 2rem; }
+        .bio-item { background-color: var(--pico-form-element-background-color); padding: 1rem; border-radius: var(--pico-border-radius); margin-bottom: 1rem; word-wrap: break-word; }
+        .loading-spinner { display: none; text-align: center; margin-top: 1rem; }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="container bg-white shadow-lg rounded-lg mt-10">
-        <h1 class="text-3xl font-bold text-center mb-6">Craft Your Perfect Instagram Bio!</h1>
-        <p class="text-center text-gray-600 mb-8">Generate engaging, optimized bios instantly with AI.</p>
-        
-        <div class="form-group">
-            <label for="keywords">Keywords (e.g., travel, food, entrepreneur):</label>
-            <input type="text" id="keywords" placeholder="Separate with commas">
-        </div>
-        
-        <div class="form-group">
-            <label for="persona">Select Your Persona:</label>
-            <select id="persona">
-                <option value="creative">Creative</option>
-                <option value="professional">Professional</option>
-                <option value="influencer">Influencer</option>
-                <option value="personal">Personal</option>
-                <option value="business">Small Business Owner</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="tone">Tone (Optional):</label>
-            <input type="text" id="tone" placeholder="e.g., witty, inspiring, informative">
-        </div>
-
-        <button onclick="generateBio()" class="w-full mb-6">Generate Bio</button>
-        
-        <h2 class="text-xl font-bold mb-4">Your AI-Generated Bio:</h2>
-        <div id="output" class="text-gray-800 text-lg"></div>
-        
-        <div class="text-center mt-8 text-sm text-gray-500">
-            <p>Powered by AI. Disclaimer: Bios are suggestions, always review and edit!</p>
-            <p class="mt-2">© 2023 APEX. All rights reserved. <a href="#" class="text-blue-600 hover:underline">Terms</a> | <a href="#" class="text-blue-600 hover:underline">Privacy</a></p>
-        </div>
-    </div>
-
+<body>
+    <main class="container">
+        <hgroup>
+            <h1>BioGenius AI</h1>
+            <p>Craft your perfect Instagram bio instantly!</p>
+        </hgroup>
+        <form id="bioForm">
+            <label for="keywords">Tell us about yourself (e.g., travel blogger, fitness enthusiast):</label>
+            <input type="text" id="keywords" name="keywords" placeholder="Enter keywords, hobbies, or passions" required>
+            <button type="submit" class="primary">Generate Bio</button>
+        </form>
+        <article id="loadingSpinner" class="loading-spinner">
+            <strong>Generating amazing bios...</strong>
+            <progress></progress>
+        </article>
+        <div id="bioResults" class="bio-results"></div>
+    </main>
     <script>
-        async function generateBio() {
+        // This is a placeholder for actual AI integration.
+        // In a real Next.js app, this would be handled server-side.
+        document.getElementById('bioForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
             const keywords = document.getElementById('keywords').value;
-            const persona = document.getElementById('persona').value;
-            const tone = document.getElementById('tone').value;
-            const outputDiv = document.getElementById('output');
+            const bioResults = document.getElementById('bioResults');
+            const loadingSpinner = document.getElementById('loadingSpinner');
 
-            outputDiv.innerHTML = 'Generating your bio...';
+            loadingSpinner.style.display = 'block';
+            bioResults.innerHTML = '';
 
-            // Placeholder for AI API call
-            // In a real application, this would send data to a backend endpoint
-            // which then calls OpenAI/similar API.
-            const mockResponse = `Hello! I'm a passionate ${persona} inspiring others with my adventures in ${keywords}. Always exploring, always creating! ${tone ? 'My tone is ' + tone + '.' : ''} \n\n ✨ Love | Life | Learn \n 🔗 [Your Link Here]`;
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000)); 
 
-            setTimeout(() => {
-                outputDiv.innerHTML = mockResponse;
-            }, 1500);
-        }
+            const mockBios = [
+                `Wanderlust soul \ud83c\udf0d | Sharing my adventures & travel tips \ud83c\udf34 | "Life is short, travel often" \u2728 #TravelBlogger #Explorer`, 
+                `Fueling my body & mind \u2728 | Fitness journey advocate \ud83d\udcaa | Healthy living enthusiast \ud83e\udd69 | Let's get fit together! #FitnessMotivation #HealthyLifestyle`, 
+                `Mompreneur \ud83d\udc69\u200d\ud83d\udcbc | Balancing motherhood & business \ud83d\udc6a | Empowering women to achieve their dreams \u2705 #MomLife #Entrepreneur`, 
+                `Creator \u2728 | Daydreamer \ud83e\uddd1\u200d\ud83c\udfa8 | Storyteller \ud83d\udcdc | Turning ideas into reality. Let's connect! #CreativeMind #Innovation`
+            ];
+            
+            mockBios.forEach(bio => {
+                const div = document.createElement('div');
+                div.className = 'bio-item';
+                div.textContent = bio;
+                bioResults.appendChild(div);
+            });
+
+            loadingSpinner.style.display = 'none';
+        });
     </script>
 </body>
 </html>
